@@ -28,7 +28,10 @@ func Str2int(input string) int {
 	output, err := strconv.ParseInt(input, 10, 64)
 	if err != nil {
 		log.Fatal("Couldn't parse string as int", err)
-		os.Exit(1)
 	}
 	return int(output)
+}
+
+func Poop() string {
+	return "Poop"
 }
