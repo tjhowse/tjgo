@@ -3,9 +3,23 @@ package tjgo
 import (
 	"bufio"
 	"log"
+	"math"
 	"os"
 	"strconv"
 )
+
+type Vec2 struct {
+	X int
+	Y int
+}
+
+func (v *Vec2) Add(i Vec2) Vec2 {
+	return Vec2{X: v.X + i.X, Y: v.Y + i.Y}
+}
+
+func (v *Vec2) Manhattan(i Vec2) int {
+	return int(math.Abs(float64(i.X-v.X)) + math.Abs(float64(i.Y-v.Y)))
+}
 
 func FileToSlice(filename string) []string {
 	var contents []string
@@ -33,5 +47,5 @@ func Str2int(input string) int {
 }
 
 func Poop() string {
-	return "Poop"
+	return "Poop2"
 }
