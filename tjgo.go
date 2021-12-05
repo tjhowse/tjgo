@@ -21,6 +21,15 @@ func (v *Vec2) Manhattan(i Vec2) int {
 	return int(math.Abs(float64(i.X-v.X)) + math.Abs(float64(i.Y-v.Y)))
 }
 
+func (v *Vec2) Distance(i Vec2) float64 {
+	return math.Abs(float64(i.X-v.X)) + math.Abs(float64(i.Y-v.Y))
+}
+
+func (v *Vec2) Scale(s float64) {
+	v.X = int(float64(v.X) * s)
+	v.Y = int(float64(v.Y) * s)
+}
+
 func FileToSlice(filename string) []string {
 	var contents []string
 	file, err := os.Open(filename)
@@ -44,6 +53,10 @@ func Str2int(input string) int {
 		log.Fatal("Couldn't parse string as int", err)
 	}
 	return int(output)
+}
+
+func Int2str(input int) string {
+	return strconv.Itoa(input)
 }
 
 func Poop() string {
