@@ -6,6 +6,7 @@ import (
 	"math"
 	"os"
 	"strconv"
+	"strings"
 )
 
 type Vec2 struct {
@@ -46,6 +47,61 @@ func FileToSlice(filename string) []string {
 	}
 	return contents
 }
+
+func FileTo2DSlice(filename string, delimiter rune) [][]string {
+	var contents [][]string
+	file, err := os.Open(filename)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		s := strings.Split(scanner.Text(), string(delimiter))
+		contents = append(contents, s)
+	}
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+	}
+	return contents
+}
+
+func FileTo2DIntSlice(filename string, delimiter rune) [][]int {
+	var contents [][]int
+	file, err := os.Open(filename)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		s := strings.Split(scanner.Text(), string(delimiter))
+		line := []int{Str2int(s[0]), Str2int(s[1])}
+		contents = append(contents, line)
+	}
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+	}
+	return contents
+}
+func FileToIntSlice(filename string) []int {
+	var contents []int
+	file, err := os.Open(filename)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		contents = append(contents, Str2int(scanner.Text()))
+	}
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+	}
+	return contents
+}
+
+// See also fields: https://pkg.go.dev/strings#Fields
 
 func Str2int(input string) int {
 	output, err := strconv.ParseInt(input, 10, 64)
