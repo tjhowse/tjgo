@@ -5,6 +5,7 @@ import (
 	"log"
 	"math"
 	"os"
+	"regexp"
 	"strconv"
 	"strings"
 )
@@ -118,3 +119,20 @@ func Int2str(input int) string {
 func Poop() string {
 	return "Poop2"
 }
+
+func DoRegex(input, regex string) []string {
+	rgx := regexp.MustCompile(regex)
+	results := rgx.FindStringSubmatch(input)
+	if len(results) > 1 {
+		return results[1:]
+	}
+	return []string{}
+}
+
+// var rgx = regexp.MustCompile(`\((.*?)\)`)
+
+// func main() {
+//     s := `(tag)SomeText`
+//     rs := rgx.FindStringSubmatch(s)
+//     fmt.Println(rs[1])
+// }
