@@ -2,6 +2,7 @@ package tjgo
 
 import (
 	"bufio"
+	"fmt"
 	"log"
 	"math"
 	"os"
@@ -30,6 +31,11 @@ func (v *Vec2) Distance(i Vec2) float64 {
 func (v *Vec2) Scale(s float64) {
 	v.X = int(float64(v.X) * s)
 	v.Y = int(float64(v.Y) * s)
+}
+
+// This returns a string representation of the line
+func (v *Vec2) String() string {
+	return fmt.Sprintf("%d,%d", v.X, v.Y)
 }
 
 // This splits a file into a slice, one line per element.
